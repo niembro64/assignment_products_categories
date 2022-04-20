@@ -14,6 +14,7 @@ namespace assignment_products_categories.Models
     [Required]
     public string Description { get; set; }
     [Required]
+    [Range(0,int.MaxValue)]
     public decimal Price { get; set; }
 
     // navigation property
