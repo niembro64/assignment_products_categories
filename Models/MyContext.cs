@@ -4,7 +4,8 @@ namespace assignment_products_categories.Models
   public class MyContext : DbContext
   {
     public MyContext(DbContextOptions options) : base(options) { }
-    // public DbSet<Chef> Chefs { get; set; }
-    // public DbSet<Dish> Dishes { get; set; }
+    public DbSet<Product> Products { get; set; }
+    public DbSet<Association> Associations { get; set; }
+    public DbSet<Category> Categories { get; set; }
   }
 }
