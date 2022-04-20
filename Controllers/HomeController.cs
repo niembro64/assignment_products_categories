@@ -25,24 +25,69 @@ namespace assignment_products_categories.Controllers
     public IActionResult Index()
     {
       ViewBag.AllCategories = _context.Categories.OrderBy(a => a.Name).ToList();
+
       ViewBag.AllProducts = _context.Products.OrderBy(a => a.Name).ToList();
-      return View("Products");
+
+      return RedirectToAction("Products");
     }
+    [HttpGet("categories")]
     public IActionResult Categories()
     {
       ViewBag.AllCategories = _context.Categories.OrderBy(a => a.Name).ToList();
+
       ViewBag.AllProducts = _context.Products.OrderBy(a => a.Name).ToList();
 
       return View();
     }
+    [HttpGet("category/{catId}")]
+    public IActionResult OneCategory(int catId)
+    {
+      ViewBag.OneCategory = _context.Categories.Include(s => s.ProductList).ThenInclude(d => d.Category).FirstOrDefault(a => a.CategoryId == catId);
+
+      ViewBag.AllCategories = _context.Categories.OrderBy(a => a.Name).ToList();
+
+      ViewBag.AllProducts = _context.Products.OrderBy(a => a.Name).ToList();
+
+      ViewBag.SomeCategories = _context.Products.Include(f => f.CategoryList).Where(s => s.CategoryList.All(d => d.CategoryId != catId));
+
+      return View();
+    }
+    [HttpGet("products")]
     public IActionResult Products()
     {
       ViewBag.AllCategories = _context.Categories.OrderBy(a => a.Name).ToList();
+
       ViewBag.AllProducts = _context.Products.OrderBy(a => a.Name).ToList();
+
+      return View();
+    }
+    [HttpGet("product/{prodId}")]
+    public IActionResult OneProduct(int prodId)
+    {
+      ViewBag.OneProduct = _context.Products.Include(s => s.CategoryList).ThenInclude(d => d.Product).FirstOrDefault(a => a.ProductId == prodId);
+
+      ViewBag.AllCategories = _context.Categories.OrderBy(a => a.Name).ToList();
+
+      ViewBag.AllProducts = _context.Products.OrderBy(a => a.Name).ToList();
+
       return View();
     }
 
     //////////
+
+    [HttpPost("association/add")]
+    public IActionResult AddCast(Association newAssocitaion)
+    {
+      _context.Associations.Add(newAssocitaion);
+      _context.SaveChanges();
+
+      ViewBag.AllCategories = _context.Categories.OrderBy(a => a.Name).ToList();
+
+      ViewBag.AllProducts = _context.Products.OrderBy(a => a.Name).ToList();
+
+      return Redirect("/");
+
+    }
 
     [HttpPost("product/add")]
     public IActionResult AddProduct(Product newProduct)
@@ -53,13 +98,17 @@ namespace assignment_products_categories.Controllers
         _context.SaveChanges();
 
         ViewBag.AllCategories = _context.Categories.OrderBy(a => a.Name).ToList();
+
         ViewBag.AllProducts = _context.Products.OrderBy(a => a.Name).ToList();
+
         return RedirectToAction("Products");
       }
       else
       {
         ViewBag.AllCategories = _context.Categories.OrderBy(a => a.Name).ToList();
+
         ViewBag.AllProducts = _context.Products.OrderBy(a => a.Name).ToList();
+
         return View("Products");
       }
     }
@@ -72,13 +121,17 @@ namespace assignment_products_categories.Controllers
         _context.SaveChanges();
 
         ViewBag.AllCategories = _context.Categories.OrderBy(a => a.Name).ToList();
+
         ViewBag.AllProducts = _context.Products.OrderBy(a => a.Name).ToList();
+
         return RedirectToAction("Categories");
       }
       else
       {
         ViewBag.AllCategories = _context.Categories.OrderBy(a => a.Name).ToList();
+
         ViewBag.AllProducts = _context.Products.OrderBy(a => a.Name).ToList();
+
         return View("Categories");
       }
     }

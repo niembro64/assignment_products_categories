@@ -60,3 +60,5 @@ C:\Users\nieme\Documents\CodingDojo\CSharpStack2022\3.2\assignment_products_cate
 C:\Users\nieme\Documents\CodingDojo\CSharpStack2022\3.2\assignment_products_categories\obj\Debug\netcoreapp3.1\assignment_products_categories.genruntimeconfig.cache
 C:\Users\nieme\Documents\CodingDojo\CSharpStack2022\3.2\assignment_products_categories\obj\Debug\netcoreapp3.1\Razor\Views\Home\Categories.cshtml.g.cs
 C:\Users\nieme\Documents\CodingDojo\CSharpStack2022\3.2\assignment_products_categories\obj\Debug\netcoreapp3.1\Razor\Views\Home\Products.cshtml.g.cs
+C:\Users\nieme\Documents\CodingDojo\CSharpStack2022\3.2\assignment_products_categories\obj\Debug\netcoreapp3.1\Razor\Views\Home\OneCategory.cshtml.g.cs
+C:\Users\nieme\Documents\CodingDojo\CSharpStack2022\3.2\assignment_products_categories\obj\Debug\netcoreapp3.1\Razor\Views\Home\OneProduct.cshtml.g.cs

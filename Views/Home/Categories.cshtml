@@ -14,7 +14,7 @@
           <span asp-validation-for="Name" class="text-danger"></span>
         </div>
         <div class="form-group">
-          <input type="submit" value="submit" class="btn btn-primary">
+          <input type="submit" value="Submit" class="btn btn-primary">
         </div>
       </form>
     </div>
@@ -22,7 +22,7 @@
       <h1 class="display-4">Categories</h1>
       @foreach (Category a in @ViewBag.AllCategories)
       {
-        <p>@a.Name</p>
+        <p><a href="/category/@a.CategoryId">@a.Name</a></p>
       }
     </div>
   </div>
