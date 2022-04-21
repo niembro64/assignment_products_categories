@@ -48,7 +48,7 @@ namespace assignment_products_categories.Controllers
 
       ViewBag.AllProducts = _context.Products.OrderBy(a => a.Name).ToList();
 
-      ViewBag.SomeCategories = _context.Products.Include(f => f.CategoryList).Where(s => s.CategoryList.All(d => d.CategoryId != catId));
+      ViewBag.SomeProducts = _context.Products.Include(f => f.CategoryList).Where(s => s.CategoryList.All(d => d.CategoryId != catId));
 
       return View();
     }
@@ -69,6 +69,8 @@ namespace assignment_products_categories.Controllers
       ViewBag.AllCategories = _context.Categories.OrderBy(a => a.Name).ToList();
 
       ViewBag.AllProducts = _context.Products.OrderBy(a => a.Name).ToList();
+
+      ViewBag.SomeCategories = _context.Categories.Include(f => f.ProductList).Where(s => s.ProductList.All(d => d.ProductId != prodId));
 
       return View();
     }
