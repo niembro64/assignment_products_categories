@@ -1,6 +1,6 @@
 @model Association
 
-<h1>@ViewBag.OneProduct.Name</h1>
+<h1>Product: @ViewBag.OneProduct.Name</h1>
 
 <div class="row">
   <div class="col-6">
@@ -12,16 +12,18 @@
   </div>
   <div class="col-6">
     <form action="/association/add" method="post">
+      <input type="hidden" name="option" value="product">
       <input type="hidden" asp-for="ProductId" value="@ViewBag.OneProduct.ProductId">
       <div class="form-group">
         <label for="CategoryId">Category Options</label>
         <select asp-for="CategoryId" class="form-control">
           @* @foreach (Category m in @ViewBag.AllCategories)
-          {
+            {
             <option value="@m.CategoryId">@m.Name</option>
-          } *@
+            } *@
 
-          @foreach(Category x in @ViewBag.SomeCategories){
+          @foreach (Category x in @ViewBag.SomeCategories)
+          {
             <option value="@x.CategoryId">@x.Name</option>
           }
         </select>

@@ -78,8 +78,9 @@ namespace assignment_products_categories.Controllers
     //////////
 
     [HttpPost("association/add")]
-    public IActionResult AddCast(Association newAssocitaion)
+    public IActionResult AddCast(Association newAssocitaion, string option)
     {
+      Console.WriteLine($"OPTION : {option}");
       _context.Associations.Add(newAssocitaion);
       _context.SaveChanges();
 
@@ -87,7 +88,12 @@ namespace assignment_products_categories.Controllers
 
       ViewBag.AllProducts = _context.Products.OrderBy(a => a.Name).ToList();
 
-      return Redirect("/");
+      if (option == "product")
+      {
+
+        return Redirect($"/product/{newAssocitaion.ProductId}");
+      }
+      return Redirect($"/category/{newAssocitaion.CategoryId}");
 
     }
 
